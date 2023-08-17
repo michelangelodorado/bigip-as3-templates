@@ -23,7 +23,7 @@
             "pool": "pool_juice",
             "serverTLS": "acmeTLS"
             "policyWAF": {
-              "bigip": "/Common/waf-policy"
+              "use": "My_ASM_Policy"
             }
           },
  
@@ -42,6 +42,12 @@
               ]
             }]
          },
+
+        "My_ASM_Policy": {
+        "class": "WAF_Policy",
+        "url": "https://example.com/asm-policy.xml",
+        "ignoreChanges": true
+          },
 
          "acmeTLS": {
            "class": "TLS_Server",
