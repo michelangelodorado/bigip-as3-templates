@@ -45,7 +45,7 @@
 
             "WAF_Policy": {
                 "class": "WAF_Policy",
-                "url": "https://raw.githubusercontent.com/michelangelodorado/bigip-as3-templates/main/waf-policy.json",
+                "url": "https://raw.githubusercontent.com/michelangelodorado/bigip-as3-templates/main/wafpolicy/waf-policy.json",
                 "ignoreChanges": true
             },
 
