@@ -21,9 +21,9 @@
               "10.0.133.36"
             ],
             "pool": "pool_juice",
-            "serverTLS": "acmeTLS"
+            "serverTLS": "acmeTLS",
             "policyWAF": {
-              "use": "My_ASM_Policy"
+                "use": "WAF_Policy"
             }
           },
  
@@ -43,11 +43,11 @@
             }]
          },
 
-        "My_ASM_Policy": {
-        "class": "WAF_Policy",
-        "url": "https://example.com/asm-policy.xml",
-        "ignoreChanges": true
-          },
+            "WAF_Policy": {
+                "class": "WAF_Policy",
+                "url": "https://raw.githubusercontent.com/michelangelodorado/bigip-as3-templates/main/waf-policy.json",
+                "ignoreChanges": true
+            },
 
          "acmeTLS": {
            "class": "TLS_Server",
