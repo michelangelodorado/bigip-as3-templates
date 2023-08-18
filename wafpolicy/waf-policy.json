@@ -3,7 +3,7 @@
       "antivirus" : {
          "inspectHttpUploads" : false
       },
-      "applicationLanguage" : "auto-detect",
+      "applicationLanguage" : "utf-8",
       "behavioral-enforcement" : {
          "behavioralEnforcementViolations" : [
             {
@@ -144,7 +144,7 @@
             {
                "description" : "Bad multipart/form-data request parsing",
                "enabled" : false,
-               "learn" : true
+               "learn" : false
             },
             {
                "description" : "Body in GET or HEAD requests",
@@ -174,10 +174,6 @@
          ],
          "violations" : [
             {
-               "description" : "Attack signature detected",
-               "name" : "VIOL_ATTACK_SIGNATURE"
-            },
-            {
                "alarm" : true,
                "block" : true,
                "description" : "GraphQL introspection query",
@@ -198,10 +194,22 @@
                "name" : "VIOL_GRAPHQL_MALFORMED"
             },
             {
+               "alarm" : false,
+               "block" : false,
+               "description" : "Server-side access to disallowed host",
+               "name" : "VIOL_SERVER_SIDE_HOST"
+            },
+            {
                "alarm" : true,
                "block" : true,
                "description" : "Disallowed file upload content detected in body",
                "name" : "VIOL_FILE_UPLOAD_IN_BODY"
+            },
+            {
+               "alarm" : false,
+               "block" : false,
+               "description" : "DataSafe Data Integrity",
+               "name" : "VIOL_DATA_INTEGRITY"
             },
             {
                "alarm" : false,
@@ -295,16 +303,8 @@
                "name" : "VIOL_THREAT_CAMPAIGN"
             },
             {
-               "alarm" : true,
-               "block" : true,
-               "description" : "Server-side access to disallowed host",
-               "name" : "VIOL_SERVER_SIDE_HOST"
-            },
-            {
-               "alarm" : false,
-               "block" : false,
-               "description" : "DataSafe Data Integrity",
-               "name" : "VIOL_DATA_INTEGRITY"
+               "description" : "Attack signature detected",
+               "name" : "VIOL_ATTACK_SIGNATURE"
             },
             {
                "alarm" : true,
@@ -326,24 +326,24 @@
                "name" : "VIOL_PLAINTEXT_FORMAT"
             },
             {
-               "alarm" : true,
-               "block" : true,
+               "alarm" : false,
+               "block" : false,
                "description" : "Illegal WebSocket binary message length",
-               "learn" : true,
+               "learn" : false,
                "name" : "VIOL_WEBSOCKET_BINARY_MESSAGE_LENGTH"
             },
             {
-               "alarm" : true,
-               "block" : true,
+               "alarm" : false,
+               "block" : false,
                "description" : "Illegal number of frames per message",
-               "learn" : true,
+               "learn" : false,
                "name" : "VIOL_WEBSOCKET_FRAMES_PER_MESSAGE_COUNT"
             },
             {
-               "alarm" : true,
-               "block" : true,
+               "alarm" : false,
+               "block" : false,
                "description" : "Illegal WebSocket extension",
-               "learn" : true,
+               "learn" : false,
                "name" : "VIOL_WEBSOCKET_EXTENSION"
             },
             {
@@ -368,16 +368,16 @@
                "name" : "VIOL_CROSS_ORIGIN_REQUEST"
             },
             {
-               "alarm" : true,
-               "block" : true,
+               "alarm" : false,
+               "block" : false,
                "description" : "Null character found in WebSocket text message",
                "name" : "VIOL_WEBSOCKET_TEXT_NULL_VALUE"
             },
             {
-               "alarm" : true,
-               "block" : true,
+               "alarm" : false,
+               "block" : false,
                "description" : "Illegal WebSocket frame length",
-               "learn" : true,
+               "learn" : false,
                "name" : "VIOL_WEBSOCKET_FRAME_LENGTH"
             },
             {
@@ -575,10 +575,10 @@
                "name" : "VIOL_PARAMETER_VALUE_REGEXP"
             },
             {
-               "alarm" : true,
-               "block" : true,
+               "alarm" : false,
+               "block" : false,
                "description" : "Illegal file type",
-               "learn" : true,
+               "learn" : false,
                "name" : "VIOL_FILETYPE"
             },
             {
@@ -631,10 +631,10 @@
                "name" : "VIOL_PARAMETER_EMPTY_VALUE"
             },
             {
-               "alarm" : true,
-               "block" : true,
+               "alarm" : false,
+               "block" : false,
                "description" : "Illegal POST data length",
-               "learn" : true,
+               "learn" : false,
                "name" : "VIOL_POST_DATA_LENGTH"
             },
             {
@@ -648,7 +648,7 @@
                "alarm" : false,
                "block" : false,
                "description" : "Illegal header length",
-               "learn" : true,
+               "learn" : false,
                "name" : "VIOL_HEADER_LENGTH"
             },
             {
@@ -707,31 +707,31 @@
                "name" : "VIOL_CSRF_EXPIRED"
             },
             {
-               "alarm" : true,
-               "block" : true,
+               "alarm" : false,
+               "block" : false,
                "description" : "Illegal URL length",
-               "learn" : true,
+               "learn" : false,
                "name" : "VIOL_URL_LENGTH"
             },
             {
                "alarm" : false,
                "block" : false,
                "description" : "Illegal cookie length",
-               "learn" : true,
+               "learn" : false,
                "name" : "VIOL_COOKIE_LENGTH"
             },
             {
-               "alarm" : true,
-               "block" : true,
+               "alarm" : false,
+               "block" : false,
                "description" : "Illegal request length",
-               "learn" : true,
+               "learn" : false,
                "name" : "VIOL_REQUEST_LENGTH"
             },
             {
-               "alarm" : true,
-               "block" : true,
+               "alarm" : false,
+               "block" : false,
                "description" : "Illegal query string length",
-               "learn" : true,
+               "learn" : false,
                "name" : "VIOL_QUERY_STRING_LENGTH"
             },
             {
@@ -841,67 +841,67 @@
          "web-services-securities" : [
             {
                "description" : "UnSigned Timestamp",
-               "enabled" : false,
+               "enabled" : true,
                "learn" : true
             },
             {
                "description" : "Timestamp expiration is too far in the future",
-               "enabled" : false,
+               "enabled" : true,
                "learn" : true
             },
             {
                "description" : "Expired Timestamp",
-               "enabled" : false,
+               "enabled" : true,
                "learn" : true
             },
             {
                "description" : "Invalid Timestamp",
-               "enabled" : false,
+               "enabled" : true,
                "learn" : true
             },
             {
                "description" : "Missing Timestamp",
-               "enabled" : false,
+               "enabled" : true,
                "learn" : true
             },
             {
                "description" : "Verification Error",
-               "enabled" : false,
+               "enabled" : true,
                "learn" : true
             },
             {
                "description" : "Signing Error",
-               "enabled" : false,
+               "enabled" : true,
                "learn" : true
             },
             {
                "description" : "Encryption Error",
-               "enabled" : false,
+               "enabled" : true,
                "learn" : true
             },
             {
                "description" : "Decryption Error",
-               "enabled" : false,
+               "enabled" : true,
                "learn" : true
             },
             {
                "description" : "Certificate Error",
-               "enabled" : false,
+               "enabled" : true,
                "learn" : true
             },
             {
                "description" : "Certificate Expired",
-               "enabled" : false,
+               "enabled" : true,
                "learn" : true
             },
             {
                "description" : "Malformed Error",
-               "enabled" : false,
+               "enabled" : true,
                "learn" : true
             },
             {
                "description" : "Internal Error",
-               "enabled" : false,
+               "enabled" : true,
                "learn" : true
             }
          ]
@@ -1472,7 +1472,7 @@
          }
       ],
       "cookie-settings" : {
-         "maximumCookieHeaderLength" : "8192"
+         "maximumCookieHeaderLength" : "any"
       },
       "cookies" : [
          {
@@ -1514,28 +1514,212 @@
          "enableResponsePageByAttackType" : true,
          "serverTechnologyName" : "Nginx"
       },
-      "description" : "Fundamental Policy",
+      "description" : "Rapid Deployment Policy",
       "enablePassiveMode" : false,
       "enforcementMode" : "blocking",
       "filetypes" : [
          {
+            "allowed" : false,
+            "name" : "wmz"
+         },
+         {
+            "allowed" : false,
+            "name" : "tmp"
+         },
+         {
+            "allowed" : false,
+            "name" : "temp"
+         },
+         {
+            "allowed" : false,
+            "name" : "sys"
+         },
+         {
+            "allowed" : false,
+            "name" : "stm"
+         },
+         {
+            "allowed" : false,
+            "name" : "shtml"
+         },
+         {
+            "allowed" : false,
+            "name" : "shtm"
+         },
+         {
+            "allowed" : false,
+            "name" : "save"
+         },
+         {
+            "allowed" : false,
+            "name" : "sav"
+         },
+         {
+            "allowed" : false,
+            "name" : "reg"
+         },
+         {
+            "allowed" : false,
+            "name" : "printer"
+         },
+         {
+            "allowed" : false,
+            "name" : "pol"
+         },
+         {
+            "allowed" : false,
+            "name" : "pfx"
+         },
+         {
+            "allowed" : false,
+            "name" : "pem"
+         },
+         {
+            "allowed" : false,
+            "name" : "p7c"
+         },
+         {
+            "allowed" : false,
+            "name" : "p7b"
+         },
+         {
+            "allowed" : false,
+            "name" : "p12"
+         },
+         {
+            "allowed" : false,
+            "name" : "old"
+         },
+         {
+            "allowed" : false,
+            "name" : "nws"
+         },
+         {
+            "allowed" : false,
+            "name" : "msi"
+         },
+         {
+            "allowed" : false,
+            "name" : "log"
+         },
+         {
+            "allowed" : false,
+            "name" : "key"
+         },
+         {
+            "allowed" : false,
+            "name" : "ini"
+         },
+         {
+            "allowed" : false,
+            "name" : "idq"
+         },
+         {
+            "allowed" : false,
+            "name" : "idc"
+         },
+         {
+            "allowed" : false,
+            "name" : "ida"
+         },
+         {
+            "allowed" : false,
+            "name" : "htw"
+         },
+         {
+            "allowed" : false,
+            "name" : "htr"
+         },
+         {
+            "allowed" : false,
+            "name" : "hta"
+         },
+         {
+            "allowed" : false,
+            "name" : "exe"
+         },
+         {
+            "allowed" : false,
+            "name" : "eml"
+         },
+         {
+            "allowed" : false,
+            "name" : "dll"
+         },
+         {
+            "allowed" : false,
+            "name" : "der"
+         },
+         {
+            "allowed" : false,
+            "name" : "dat"
+         },
+         {
+            "allowed" : false,
+            "name" : "crt"
+         },
+         {
+            "allowed" : false,
+            "name" : "config"
+         },
+         {
+            "allowed" : false,
+            "name" : "conf"
+         },
+         {
+            "allowed" : false,
+            "name" : "com"
+         },
+         {
+            "allowed" : false,
+            "name" : "cmd"
+         },
+         {
+            "allowed" : false,
+            "name" : "cgi"
+         },
+         {
+            "allowed" : false,
+            "name" : "cfg"
+         },
+         {
+            "allowed" : false,
+            "name" : "cer"
+         },
+         {
+            "allowed" : false,
+            "name" : "bkp"
+         },
+         {
+            "allowed" : false,
+            "name" : "bin"
+         },
+         {
+            "allowed" : false,
+            "name" : "bck"
+         },
+         {
+            "allowed" : false,
+            "name" : "bat"
+         },
+         {
+            "allowed" : false,
+            "name" : "bak"
+         },
+         {
             "allowed" : true,
-            "checkPostDataLength" : true,
-            "checkQueryStringLength" : true,
-            "checkRequestLength" : true,
-            "checkUrlLength" : true,
+            "checkPostDataLength" : false,
+            "checkQueryStringLength" : false,
+            "checkRequestLength" : false,
+            "checkUrlLength" : false,
             "name" : "*",
-            "performStaging" : true,
-            "postDataLength" : 1000,
-            "queryStringLength" : 1000,
-            "requestLength" : 5000,
+            "performStaging" : false,
             "responseCheck" : false,
             "type" : "wildcard",
-            "urlLength" : 100,
             "wildcardOrder" : 1
          }
       ],
-      "fullPath" : "/Tenant_JUICE/juice_https_app/My_ASM_Policy",
+      "fullPath" : "/Tenant_JUICE/test",
       "general" : {
          "allowedResponseCodes" : [
             400,
@@ -1583,7 +1767,7 @@
          }
       ],
       "header-settings" : {
-         "maximumHttpHeaderLength" : "8192"
+         "maximumHttpHeaderLength" : "any"
       },
       "headers" : [
          {
@@ -1594,10 +1778,10 @@
             "mandatory" : false,
             "maskValueInLogs" : false,
             "name" : "transfer-encoding",
-            "normalizationViolations" : true,
+            "normalizationViolations" : false,
             "percentDecoding" : false,
             "type" : "explicit",
-            "urlNormalization" : true
+            "urlNormalization" : false
          },
          {
             "allowRepeatedOccurrences" : true,
@@ -1684,11 +1868,11 @@
             "name" : "GET"
          }
       ],
-      "name" : "My_ASM_Policy",
+      "name" : "test",
       "parameters" : [
          {
             "allowEmptyValue" : true,
-            "allowRepeatedParameterName" : false,
+            "allowRepeatedParameterName" : true,
             "attackSignaturesCheck" : true,
             "checkMaxValueLength" : false,
             "checkMetachars" : false,
@@ -1699,11 +1883,25 @@
             "metacharsOnParameterValueCheck" : false,
             "name" : "*",
             "parameterLocation" : "any",
-            "performStaging" : true,
+            "performStaging" : false,
             "sensitiveParameter" : false,
             "type" : "wildcard",
             "valueType" : "auto-detect",
             "wildcardOrder" : 1
+         },
+         {
+            "allowEmptyValue" : true,
+            "allowRepeatedParameterName" : false,
+            "isCookie" : false,
+            "isHeader" : false,
+            "level" : "global",
+            "mandatory" : false,
+            "name" : "__VIEWSTATE",
+            "parameterLocation" : "any",
+            "performStaging" : false,
+            "sensitiveParameter" : false,
+            "type" : "explicit",
+            "valueType" : "ignore"
          }
       ],
       "plain-text-profiles" : [
@@ -1720,18 +1918,14 @@
          }
       ],
       "policy-builder" : {
-         "autoApply" : {
-            "frequency" : "real-time"
-         },
          "enableFullPolicyInspection" : true,
          "enableTrustedTrafficSiteChangeTracking" : true,
          "enableUntrustedTrafficSiteChangeTracking" : true,
-         "fullyAutomatic" : true,
          "inactiveEntityInactivityDurationInDays" : 90,
          "learnFromResponses" : false,
          "learnInactiveEntities" : true,
          "learnOnlyFromNonBotTraffic" : true,
-         "learningMode" : "automatic",
+         "learningMode" : "manual",
          "responseStatusCodes" : [
             "1xx",
             "2xx",
@@ -1769,40 +1963,40 @@
          "eventCorrelationMode" : "local"
       },
       "policy-builder-cookie" : {
-         "collapseCookiesIntoOneEntity" : false,
-         "enforceUnmodifiedCookies" : false,
+         "collapseCookieOccurrences" : 10,
+         "collapseCookiesIntoOneEntity" : true,
+         "enforceUnmodifiedCookies" : true,
          "learnExplicitCookies" : "selective",
          "maximumCookies" : 100
       },
       "policy-builder-filetype" : {
-         "learnExplicitFiletypes" : "compact",
-         "maximumFileTypes" : 50
+         "learnExplicitFiletypes" : "never",
+         "maximumFileTypes" : 100
       },
       "policy-builder-header" : {
          "maximumHosts" : 10000,
-         "validHostNames" : true
+         "validHostNames" : false
       },
       "policy-builder-parameter" : {
          "classifyParameters" : false,
-         "collapseParameterOccurrences" : 10,
-         "collapseParametersIntoOneEntity" : true,
+         "collapseParametersIntoOneEntity" : false,
          "dynamicParameters" : {
             "allHiddenFields" : false,
             "formParameters" : false,
             "linkParameters" : false,
             "uniqueValueSets" : 10
          },
-         "learnExplicitParameters" : "selective",
+         "learnExplicitParameters" : "never",
          "maximumParameters" : 10000,
          "parameterLearningLevel" : "global",
          "parametersIntegerValue" : false
       },
       "policy-builder-redirection-protection" : {
-         "learnExplicitRedirectionDomains" : "always",
+         "learnExplicitRedirectionDomains" : "never",
          "maximumRedirectionDomains" : 100
       },
       "policy-builder-server-technologies" : {
-         "enableServerTechnologiesDetection" : true
+         "enableServerTechnologiesDetection" : false
       },
       "policy-builder-sessions-and-logins" : {
          "learnLoginPage" : false
@@ -1810,7 +2004,9 @@
       "policy-builder-url" : {
          "classifyUrls" : false,
          "classifyWebsocketUrls" : false,
-         "collapseUrlsIntoOneEntity" : false,
+         "collapseUrlDepth" : 2,
+         "collapseUrlOccurrences" : 500,
+         "collapseUrlsIntoOneEntity" : true,
          "learnExplicitUrls" : "never",
          "learnExplicitWebsocketUrls" : "never",
          "learnMethodsOnUrls" : false,
@@ -1831,14 +2027,7 @@
       },
       "protocolIndependent" : false,
       "redirection-protection" : {
-         "redirectionDomains" : [
-            {
-               "domainName" : "*",
-               "type" : "wildcard",
-               "wildcardOrder" : 1
-            }
-         ],
-         "redirectionProtectionEnabled" : true
+         "redirectionProtectionEnabled" : false
       },
       "redirection-protection-domains" : [
          {
@@ -1848,10 +2037,6 @@
          }
       ],
       "response-pages" : [
-         {
-            "responseActionType" : "default",
-            "responsePageType" : "persistent-flow"
-         },
          {
             "responseActionType" : "default",
             "responsePageType" : "graphql"
@@ -1885,6 +2070,10 @@
          {
             "responseActionType" : "default",
             "responsePageType" : "mobile"
+         },
+         {
+            "responseActionType" : "default",
+            "responsePageType" : "persistent-flow"
          },
          {
             "responseActionType" : "erase-cookies",
@@ -1938,7 +2127,7 @@
       },
       "softwareVersion" : "16.1.3",
       "template" : {
-         "name" : "POLICY_TEMPLATE_FUNDAMENTAL"
+         "name" : "POLICY_TEMPLATE_RAPID_DEPLOYMENT"
       },
       "threat-campaign-settings" : {
          "threatCampaignEnforcementReadinessPeriod" : 1,
@@ -1960,7 +2149,7 @@
             "method" : "*",
             "methodsOverrideOnUrlCheck" : false,
             "name" : "*",
-            "performStaging" : true,
+            "performStaging" : false,
             "protocol" : "http",
             "type" : "wildcard",
             "urlContentProfiles" : [
@@ -2012,7 +2201,7 @@
             "method" : "*",
             "methodsOverrideOnUrlCheck" : false,
             "name" : "*",
-            "performStaging" : true,
+            "performStaging" : false,
             "protocol" : "https",
             "type" : "wildcard",
             "urlContentProfiles" : [
@@ -2070,11 +2259,11 @@
             },
             "metacharsOnWebsocketUrlCheck" : false,
             "name" : "*",
-            "performStaging" : true,
+            "performStaging" : false,
             "plainTextProfile" : {
                "name" : "Default"
             },
-            "protocol" : "ws",
+            "protocol" : "wss",
             "type" : "wildcard",
             "unsupportedExtensions" : "remove",
             "wildcardIncludesSlash" : true,
@@ -2098,11 +2287,11 @@
             },
             "metacharsOnWebsocketUrlCheck" : false,
             "name" : "*",
-            "performStaging" : true,
+            "performStaging" : false,
             "plainTextProfile" : {
                "name" : "Default"
             },
-            "protocol" : "wss",
+            "protocol" : "ws",
             "type" : "wildcard",
             "unsupportedExtensions" : "remove",
             "wildcardIncludesSlash" : true,
